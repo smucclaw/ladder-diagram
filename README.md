@@ -2,7 +2,7 @@
 
 Visualise boolean AND and OR circuits.
 
-- [Documentation](./docs)
+- [Documentation](https://juliapoo.github.io/ladder-diagram/index.html)
 
 ## Usage
 
@@ -63,9 +63,7 @@ window.diagram = new LadderDiagram(
 
 Given the known values of each boolean variable, the resulting expression evaluates to `True`, and the diagram highlights a "path" that explains the truth value of the expression.
 
-<center>
-<img src="./rsrc/example.jpg" style="width:100%;">
-</center>
+<img src="./rsrc/example.jpg" width="500">
 
 ## Developing
 
