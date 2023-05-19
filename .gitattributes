@@ -1,0 +1,4 @@
+[attr]generated linguist-generated=true diff=generated
+
+docs/*    generated
+docs/**/* generated

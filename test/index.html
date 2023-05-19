@@ -1,0 +1,56 @@
+<html>
+<head>
+    <link rel="stylesheet" href="../css/ladderdiagram.css">
+</head>
+<body>
+
+<div id="test1" style="font-size:1.5em;"></div>
+
+<script type="module">
+import { BoolVar, AllQuantifier, AnyQuantifier, LadderDiagram } from "../js/ladder.js"
+
+window.data1 = new AllQuantifier([
+    new BoolVar("walk", false, null, 'T'),
+    new AnyQuantifier([
+        new BoolVar("swim", true, 'F', 'F'),
+        new BoolVar("sink", true),
+    ]),
+    new AnyQuantifier([
+        new BoolVar("eat", false, null, 'F'),
+        new AnyQuantifier([
+            new BoolVar("alcoholic", false, null, 'T'),
+            new BoolVar("non-alcoholic", false, 'F')
+        ],
+        "drink")
+    ])
+])
+
+window.diagram1 = new LadderDiagram(
+    document.getElementById("test1"),
+    data1
+)
+
+window.data2 = new AllQuantifier([
+    new BoolVar("walk", false, null, 'T'),
+    new AnyQuantifier([
+        new BoolVar("lets keep swimming lets keep swimming lets keep swimming all day long", true, 'F', 'T'),
+        new BoolVar("sink", true),
+    ]),
+    new AnyQuantifier([
+        new BoolVar("eat", false, null, 'F'),
+        new AnyQuantifier([
+            new BoolVar("alcoholic", false, null, 'T'),
+            new BoolVar("non-alcoholic", false, 'F')
+        ],
+        "drink")
+    ])
+])
+
+window.diagram2 = new LadderDiagram(
+    document.getElementById("test1"),
+    data2
+)
+window.LadderDiagram = LadderDiagram
+</script>
+</body>
+</html>

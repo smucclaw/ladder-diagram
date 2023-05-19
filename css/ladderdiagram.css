@@ -1,0 +1,128 @@
+:root {
+  --main-bg-color: rgb(238, 230, 216);
+  --box-bg-color: rgb(254, 254, 253);
+  --box-bg-color-grayed: rgb(168, 156, 140);
+  --text-color-light: black;
+  --text-color-dark: white;
+  --border-width-default: .15em;
+  --border-color-default: var(--border-width-default) solid black;
+  --border-color-positive: rgb(29, 152, 2);
+  --border-color-negative: rgb(163, 16, 16);
+  --element-positioning: center;
+}
+
+.ladder-diagram {
+    background-color: var(--main-bg-color);
+    overflow-x: auto;
+    position: relative;
+    padding: 1em;
+}
+
+.ladder-diagram-subgraph {
+    background-color: var(--main-bg-color);
+    position: relative;
+}
+
+.ladder-diagram-elements {
+    display: grid;
+    /* grid-auto-columns: minmax(auto, 15em); */
+    grid-auto-columns: auto;
+    grid-auto-rows: auto;
+    align-items: var(--element-positioning);
+    column-gap: 0.5em;
+    row-gap: 0.5em;
+}
+
+.ladder-diagram-header {
+    color: var(--text-color-light);
+    margin: 0;
+    margin-bottom: .3em;
+    text-align: center;
+}
+
+.ladder-diagram-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    align-self: var(--element-positioning);
+}
+
+.ladder-diagram-box-hidden {
+    padding: 0;
+    width: 0;
+}
+
+.ladder-diagram-box-text {
+    background-color: var(--box-bg-color-grayed);
+    color: var(--text-color-dark);
+    max-width: 15em;
+    padding: 0.4em;
+    position: relative;
+    border: var(--border-width-default) solid var(--main-bg-color);
+}
+
+.ladder-diagram-box-corner {
+    width: 50%;
+    height: 50%;
+    position: absolute;
+    box-sizing: content-box;
+    display: none;
+}
+
+.ladder-diagram-box-corner-0 {
+    top: -.1em; left: -.1em;
+    border-left: var(--border-color-default);
+    border-top: var(--border-color-default);
+    border-color: var(--border-color-positive);
+}
+
+.ladder-diagram-box-corner-1 {
+    bottom: -.1em; left: -.1em;
+    border-left: var(--border-color-default);
+    border-bottom: var(--border-color-default);
+    border-color: var(--border-color-negative);
+}
+
+.ladder-diagram-box-corner-2 {
+    top: -.1em; right: -.1em;
+    border-right: var(--border-color-default);
+    border-top: var(--border-color-default);
+    border-color: var(--border-color-positive);
+}
+
+.ladder-diagram-box-corner-3 {
+    bottom: -.1em; right: -.1em;
+    border-right: var(--border-color-default);
+    border-bottom: var(--border-color-default);
+    border-color: var(--border-color-negative);
+}
+
+.ladder-diagram-box-bool-T > .ladder-diagram-box-corner-0 {
+    display: initial;
+}
+
+.ladder-diagram-box-bool-F > .ladder-diagram-box-corner-1 {
+    display: initial;
+}
+
+.ladder-diagram-box-isnegated > .ladder-diagram-box-corner-3 {
+    display: initial;
+}
+
+.ladder-diagram-box-isnotnegated > .ladder-diagram-box-corner-2 {
+    display: initial;
+}
+
+.ladder-diagram-box-isknown {
+    background-color: var(--box-bg-color);
+    color: var(--text-color-light);
+}
+
+.ladder-diagram-lines {
+    pointer-events: none;
+    position:absolute;
+    top:0;
+    left:0;
+    z-index: 100;
+}
