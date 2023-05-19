@@ -3,6 +3,11 @@
 Visualise boolean AND and OR circuits.
 
 - [Documentation](https://juliapoo.github.io/ladder-diagram/index.html)
+- [npm](https://www.npmjs.com/package/ladder-diagram)
+
+## Install
+
+`npm install ladder-diagram`
 
 ## Usage
 
