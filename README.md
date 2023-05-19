@@ -2,7 +2,7 @@
 
 Visualise boolean AND and OR circuits.
 
-- [Documentation](https://juliapoo.github.io/ladder-diagram/index.html)
+- [Reference](https://juliapoo.github.io/ladder-diagram/index.html)
 - [npm](https://www.npmjs.com/package/ladder-diagram)
 
 ## Install
@@ -24,7 +24,7 @@ $$\texttt{walk} \lor (\neg \texttt{swim} \land \neg \texttt{sink}) \lor (\texttt
 <html>
 <head>
     <!-- Path to the style sheet for this codebase -->
-    <link rel="stylesheet" href="./node_modules/ladder-diagram/css/ladderdiagram.css">
+    <link rel="stylesheet" href="./node_modules/ladder-diagram/css/ladder.css">
 </head>
 <body>
 
