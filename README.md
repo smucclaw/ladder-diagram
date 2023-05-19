@@ -7,9 +7,8 @@ Visualise boolean AND and OR circuits.
 ## Usage
 
 This code generates a diagram that visualises the boolean expression:
-$$
-\texttt{walk} \lor (\neg \texttt{swim} \land \neg \texttt{sink}) \lor (\texttt{eat} \land (\texttt{alcohol} \land \texttt{non-alcohol}))
-$$
+
+$$\texttt{walk} \lor (\neg \texttt{swim} \land \neg \texttt{sink}) \lor (\texttt{eat} \land (\texttt{alcohol} \land \texttt{non-alcohol}))$$
 
 | | `walk` | `swim` | `sink` | `eat` | `alcohol` | `non-alcohol` |
 | - | - | - | - | - | - | - |
