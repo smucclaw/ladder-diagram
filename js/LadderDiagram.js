@@ -7,7 +7,8 @@ import { BoolVar, AllQuantifier, AnyQuantifier } from "./Data.js"
  * to its children.
  * 
  * E.g., ALL( ANY(A,B), C ). 
- * Suppose A is false, B is true and C is true.
+ * 
+ * Suppose A is false, B is true and C is true. 
  * Then TruthPath is [[false, true], true]
  * @typedef {(Boolean | TruthPath[])} TruthPath
  */

@@ -1,7 +1,10 @@
 /**
  * Represents a truth value
+ * 
  * - null: unknown
+ * 
  * - 'T': True
+ * 
  * - 'F': False
  * @typedef {(null | 'T' | 'F')} TruthValue
  */
@@ -15,11 +18,7 @@
 /** Represents a boolean variable */
 class BoolVar {
     /**
-     * Constructor
-     * Truth values can be
-     * - null: unknown
-     * - 'T': True
-     * - 'F': False
+     * Constructs a BoolVar
      * @param {String} text - Name of boolean variable
      * @param {Boolean} isnegated - If the variable is negated
      * @param {TruthValue} [preset=null] - Default value of the variable
@@ -34,14 +33,14 @@ class BoolVar {
 }
 
 /** 
- * Represents an ALL quantifier
+ * Represents an ALL quantifier. 
+ * This quantifier asserts it is True iff 
+ * all its children is True.
+ * This is an abstraction of the AND operator.
  */
 class AllQuantifier {
     /**
-     * Constructor
-     * This quantifier asserts it is True iff 
-     * all its children is True.
-     * This is an abstraction of the AND operator
+     * Constructs an AllQuantifier
      * @param {Circuit[]} children - Array of Circuit objects
      * @param {String} [header="all of"] - Optional label of quantifier 
      */
@@ -52,14 +51,14 @@ class AllQuantifier {
 }
 
 /** 
- * Represents an ANY quantifier
+ * Represents an ANY quantifier. 
+ * This quantifier asserts it is True iff 
+ * at least one its children is True. 
+ * This is an abstraction of the OR operator
  */
 class AnyQuantifier {
     /**
-     * Constructor
-     * This quantifier asserts it is True iff 
-     * at least one its children is True.
-     * This is an abstraction of the OR operator
+     * Constructs an AnyQuantifier
      * @param {Circuit[]} children - Array of Circuit objects
      * @param {String} [header="either"] - Optional label of quantifier 
      */
