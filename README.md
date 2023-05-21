@@ -1,9 +1,20 @@
 # ladder.js
 
-Visualise boolean AND and OR circuits.
+Visualise boolean circuits
+- composed from **combinators** *AND OR NOT*
+- **labeled** with markings *known* (user-provided) and *unknown* (default)
+- **values** being *TRUE FALSE UNKNOWN*
 
-- [Reference](https://juliapoo.github.io/ladder-diagram/index.html)
-- [npm](https://www.npmjs.com/package/ladder-diagram)
+Available as:
+- [Github source](https://juliapoo.github.io/ladder-diagram/index.html)
+- [npm package](https://www.npmjs.com/package/ladder-diagram)
+
+For background, see:
+- [Specification in Google Drive](https://drive.google.com/drive/folders/1y7TssfA925VuyuAt8VBaNxlRTo8KyqlS?usp=sharing)
+- [Haskell version](https://github.com/smucclaw/dsl/tree/main/lib/haskell/anyall)
+- [Purescript version](https://github.com/smucclaw/vue-pure-pdpa/tree/main/src/AnyAll)
+- [Ladder Logic](https://en.wikipedia.org/wiki/Ladder_logic)
+- [Shannon 1940](https://dspace.mit.edu/handle/1721.1/11173)
 
 ## Install
 
@@ -15,10 +26,10 @@ This code generates a diagram that visualises the boolean expression:
 
 $$\texttt{walk} \land (\neg \texttt{swim} \lor \neg \texttt{sink}) \land (\texttt{eat} \lor (\texttt{alcohol} \lor \texttt{non-alcohol}))$$
 
-| | `walk` | `swim` | `sink` | `eat` | `alcohol` | `non-alcohol` |
-| - | - | - | - | - | - | - |
-| Default Value | - | F | - | - | - | F |
-| Known Value | T | F | - | F | T | - | 
+|               | `walk` | `swim` | `sink` | `eat` | `alcohol` | `non-alcohol` |
+|---------------|--------|--------|--------|-------|-----------|---------------|
+| Default Value | -      | F      | -      | -     | -         | F             |
+| Known Value   | T      | F      | -      | F     | T         | -             |
 
 ```html
 <html>
