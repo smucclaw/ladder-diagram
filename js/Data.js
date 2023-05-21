@@ -62,9 +62,11 @@ class AnyQuantifier {
      * @param {Circuit[]} children - Array of Circuit objects
      * @param {String} [header="either"] - Optional label of quantifier 
      */
-    constructor(children, header = "either") {
-        this.children = children
-        this.header = header
+    constructor(children, header) {
+      this.children = children
+      this.header =
+        header !== undefined ? header :
+        this.children.length == 2 ? "either" : "any of"
     }
 }
 
