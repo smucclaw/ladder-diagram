@@ -77,7 +77,7 @@ class LadderDiagram {
     _create_text_cell(x, y, circuit) {
 
         let internal = this._create_empty_cell(x, y)
-        for (let i = 0; i < 4; i++) {
+        for (const i of ["TL", "BL", "TR", "BR"]) {
             let corner = document.createElement("div")
             corner.classList.add(`ladder-diagram-box-corner`)
             corner.classList.add(`ladder-diagram-box-corner-${i}`)

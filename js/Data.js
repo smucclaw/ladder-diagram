@@ -68,7 +68,7 @@ class AnyQuantifier {
     constructor(children, header) {
       this.children = children
       this.header =
-        header !== undefined ? header :
+        header !== undefined      ? header :
         this.children.length <= 1 ? null :
         this.children.length == 2 ? "either" : "any of"
     }
