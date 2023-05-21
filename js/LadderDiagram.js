@@ -83,6 +83,18 @@ class LadderDiagram {
             corner.classList.add(`ladder-diagram-box-corner-${i}`)
             internal.appendChild(corner)
         }
+
+        for (const i of ["Upper-True", "Upper-False",
+                                       "Lower-False",
+                         "Upper-Not",                   "Upper-NotTrue",
+                         "Lower-Not", "Lower-NotFalse", "Lower-NotTrue"
+                        ]) {
+            let half = document.createElement("div")
+            half.classList.add(`ladder-diagram-box-half`)
+            half.classList.add(`ladder-diagram-box-half-${i}`)
+            internal.appendChild(half)
+        }
+
         internal.appendChild(document.createTextNode(circuit.text))
         internal.classList.add("ladder-diagram-box")
         internal.classList.add("ladder-diagram-box-text")
@@ -100,10 +112,11 @@ class LadderDiagram {
         switch (truthval) {
             case 'T': internal.classList.add("ladder-diagram-box-bool-T"); break
             case 'F': internal.classList.add("ladder-diagram-box-bool-F"); break
-            case null: break
+            case 'U': 
+            case null: internal.classList.add("ladder-diagram-box-bool-U"); break
             default: console.error(
                 "LadderDiagram._create_text_cell: Invalid bool tag in BoolVar"
-                + "Expected: null | 'T' | 'F'. Got "
+                + "Expected: null | 'U' | 'T' | 'F'. Got "
                 + `${truthval}`)
         }
         return internal

@@ -2,16 +2,15 @@
 
 /* the general class `box-corner` has `display none` by default,
  * but when the specializer class `box-corner-XX`
- * is a child of the appropriate `T / F / isnegated / isnotnegated`
- * container, `display: initial` overrides and causes
- * the relevant border to appear.
+ * is a child of the appropriate `T / F / isnegated / isnotnegated` container,
+ * `display: initial` overrides and causes the relevant border to appear.
  */
 
 .ladder-diagram-box-corner {
     width: 50%;
     height: 50%;
     position: absolute;
-    box-sizing: content-box;
+    box-sizing: content-box; /* or border-box? */
     display: none;
 }
 

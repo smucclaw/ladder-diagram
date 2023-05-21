@@ -1,12 +1,15 @@
 /**
  * Represents a truth value
  * 
- * - null: unknown
- * 
  * - 'T': True
  * 
  * - 'F': False
- * @typedef {(null | 'T' | 'F')} TruthValue
+ * 
+ * - 'U': unknown (user may have clicked "don't know")
+ * 
+ * - null : user hasn't clicked on anything
+ * 
+ * @typedef {(null | 'U' | | 'T' | 'F')} TruthValue
  */
 
 /**

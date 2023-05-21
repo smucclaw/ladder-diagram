@@ -35,7 +35,7 @@ $$\texttt{walk} \land (\neg \texttt{swim} \lor \neg \texttt{sink}) \land (\textt
 <html>
 <head>
     <!-- Path to the style sheet for this codebase -->
-    <link rel="stylesheet" href="./node_modules/ladder-diagram/css/ladder.css">
+    <link rel="stylesheet" href="./node_modules/ladder-diagram/css/ladder-corners.css">
 </head>
 <body>
 
@@ -79,7 +79,17 @@ window.diagram = new LadderDiagram(
 
 Given the known values of each boolean variable, the resulting expression evaluates to `True`, and the diagram highlights a "path" that explains the truth value of the expression.
 
-<img src="./rsrc/example.jpg" width="500">
+<img src="./rsrc/example-corners.jpg" width="500">
+
+## Corners vs Sides
+
+```html
+    <link rel="stylesheet" href="./node_modules/ladder-diagram/css/ladder-sides.css">
+```
+
+This alternative design marks the sides instead of the corners, according to the original spec.
+
+<img src="./rsrc/example-sides.png" width="500">
 
 ## Developing
 
