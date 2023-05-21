@@ -44,9 +44,11 @@ class AllQuantifier {
      * @param {Circuit[]} children - Array of Circuit objects
      * @param {String} [header="all of"] - Optional label of quantifier 
      */
-    constructor(children, header = "all of") {
-        this.children = children
-        this.header = header
+    constructor(children, header) {
+      this.children = children
+      this.header =
+        header !== undefined ? header :
+        this.children.length == 2 ? "both" : "all of"
     }
 }
 
