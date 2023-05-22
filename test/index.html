@@ -25,11 +25,6 @@ window.data1 = new AllQuantifier([
     ])
 ])
 
-window.diagram1 = new LadderDiagram(
-    document.getElementById("test1"),
-    data1
-)
-
 window.data2 = new AllQuantifier([
     new BoolVar("walk", false, null, 'T'),
     new AnyQuantifier([
@@ -46,10 +41,40 @@ window.data2 = new AllQuantifier([
     ])
 ])
 
+window.data3 = new AllQuantifier([
+    new AnyQuantifier([
+        new BoolVar("Left Nothing", false, null),
+        new BoolVar("Left True", false, 'T'),
+        new BoolVar("Left False", false, 'F'),
+        new BoolVar("Not Left Nothing", true, null),
+        new BoolVar("Not Left True", true, 'T'),
+        new BoolVar("Not Left False", true, 'F')
+    ]),
+    new AnyQuantifier([
+        new BoolVar("Right Nothing", false, null, null),
+        new BoolVar("Right True", false, null, 'T'),
+        new BoolVar("Right False", false, null, 'F'),
+        new BoolVar("Not Right Nothing", true, null, null),
+        new BoolVar("Not Right True", true, null, 'T'),
+        new BoolVar("Not Right False", true, null, 'F')
+    ])
+])
+
+window.diagram1 = new LadderDiagram(
+    document.getElementById("test1"),
+    data1
+)
+
 window.diagram2 = new LadderDiagram(
     document.getElementById("test1"),
     data2
 )
+
+window.diagram3 = new LadderDiagram(
+    document.getElementById("test1"),
+    data3
+)
+
 window.LadderDiagram = LadderDiagram
 </script>
 </body>

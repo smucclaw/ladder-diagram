@@ -51,6 +51,7 @@
 .ladder-diagram-box-hidden {
     padding: 0;
     width: 0;
+    justify-self: center;
 }
 
 .ladder-diagram-box-text {
