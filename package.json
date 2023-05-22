@@ -1,6 +1,6 @@
 {
   "name": "ladder-diagram",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "Visualise AND and OR boolean circuits",
   "main": "js/ladder.js",
   "devDependencies": {

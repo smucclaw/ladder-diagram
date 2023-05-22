@@ -25,11 +25,6 @@ window.data1 = new AllQuantifier([
     ])
 ])
 
-window.diagram1 = new LadderDiagram(
-    document.getElementById("test1"),
-    data1
-)
-
 window.data2 = new AllQuantifier([
     new BoolVar("walk", false, null, 'T'),
     new AnyQuantifier([
@@ -46,15 +41,7 @@ window.data2 = new AllQuantifier([
     ])
 ])
 
-window.diagram2 = new LadderDiagram(
-    document.getElementById("test1"),
-    data2
-)
-
-// these truth values correspond to `Either (Maybe Bool) (Maybe Bool)`,
-// under an (id | Not) combinator
-window.diagram3 = new LadderDiagram(
-  document.getElementById("test1"),
+window.data3 =
   new AllQuantifier([
     new AnyQuantifier([
       new BoolVar(    "Left  Null",    false, null, null  ),
@@ -77,9 +64,23 @@ window.diagram3 = new LadderDiagram(
       new BoolVar("Not Right True",    true,  null, 'T'   ),
     ])
   ])
+
+window.diagram1 = new LadderDiagram(
+    document.getElementById("test1"),
+    data1
 )
 
+window.diagram2 = new LadderDiagram(
+    document.getElementById("test1"),
+    data2
+)
 
+// these truth values correspond to `Either (Maybe Bool) (Maybe Bool)`,
+// under an (id | Not) combinator
+window.diagram3 = new LadderDiagram(
+    document.getElementById("test1"),
+    data3
+)
 
 window.LadderDiagram = LadderDiagram
 </script>
