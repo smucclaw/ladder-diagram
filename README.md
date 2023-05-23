@@ -35,7 +35,7 @@ $$\texttt{walk} \land (\neg \texttt{swim} \lor \neg \texttt{sink}) \land (\textt
 <html>
 <head>
     <!-- Path to the style sheet for this codebase -->
-    <link rel="stylesheet" href="./node_modules/ladder-diagram/css/ladder-corners.css">
+    <link rel="stylesheet" href="./node_modules/ladder-diagram/css/ladder.css">
 </head>
 <body>
 
@@ -70,7 +70,8 @@ let circuit = new AllQuantifier([
 
 window.diagram = new LadderDiagram(
     document.getElementById("test"),
-    circuit
+    circuit,
+    "Corners" // Box styling
 )
 </script>
 </body>
@@ -79,17 +80,21 @@ window.diagram = new LadderDiagram(
 
 Given the known values of each boolean variable, the resulting expression evaluates to `True`, and the diagram highlights a "path" that explains the truth value of the expression.
 
-<img src="./rsrc/example-corners.jpg" width="500">
+<img src="./rsrc/example-corners.jpg" width="500" style="max-width:100%">
 
-## Corners vs Sides
+## Corners vs Sides Styling
 
-```html
-    <link rel="stylesheet" href="./node_modules/ladder-diagram/css/ladder-sides.css">
-```
-
+To enable an alternative box styling, change the `box_style` argument to `"Sides"`:
+```js
+new LadderDiagram(
+    document.getElementById("test"),
+    circuit,
+    "Sides" // Box styling
+)
+``` 
 This alternative design marks the sides instead of the corners, according to the original spec.
 
-<img src="./rsrc/example-sides.png" width="500">
+<img src="./rsrc/example-sides.png" width="1000" style="max-width:100%">
 
 ## Developing
 

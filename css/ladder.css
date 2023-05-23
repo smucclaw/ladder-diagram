@@ -1,3 +1,6 @@
+@import "ladder-corners.css";
+@import "ladder-sides.css";
+
 :root {
   --main-bg-color: rgb(238, 230, 216);
   --box-bg-color: rgb(254, 254, 253);

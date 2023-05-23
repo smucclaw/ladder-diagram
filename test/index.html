@@ -1,10 +1,14 @@
 <html>
 <head>
-    <link rel="stylesheet" href="../css/ladder-sides.css">
+    <link rel="stylesheet" href="../css/ladder.css">
 </head>
 <body>
 
-<div id="test1" style="font-size:1.5em;"></div>
+<h1>Corner Style Test</h1>
+<div id="corners-test" style="font-size:1.5em;"></div>
+
+<h1>Sides Style Test</h1>
+<div id="sides-test" style="font-size:1.5em;"></div>
 
 <script type="module">
 import { BoolVar, AllQuantifier, AnyQuantifier, LadderDiagram } from "../js/ladder.js"
@@ -66,23 +70,43 @@ window.data3 =
   ])
 
 window.diagram1 = new LadderDiagram(
-    document.getElementById("test1"),
+    document.getElementById("corners-test"),
     data1
 )
 
 window.diagram2 = new LadderDiagram(
-    document.getElementById("test1"),
+    document.getElementById("corners-test"),
     data2
 )
 
 // these truth values correspond to `Either (Maybe Bool) (Maybe Bool)`,
 // under an (id | Not) combinator
 window.diagram3 = new LadderDiagram(
-    document.getElementById("test1"),
-    data3
+    document.getElementById("corners-test"),
+    data3,
 )
 
-window.LadderDiagram = LadderDiagram
+window.diagram4 = new LadderDiagram(
+    document.getElementById("sides-test"),
+    data1,
+    "Sides"
+)
+
+window.diagram5 = new LadderDiagram(
+    document.getElementById("sides-test"),
+    data2,
+    "Sides"
+)
+
+// these truth values correspond to `Either (Maybe Bool) (Maybe Bool)`,
+// under an (id | Not) combinator
+window.diagram6 = new LadderDiagram(
+    document.getElementById("sides-test"),
+    data3,
+    "Sides"
+)
+
+
 </script>
 </body>
 </html>

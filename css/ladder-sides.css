@@ -1,5 +1,3 @@
-@import "ladder.css";
-
 /* the general class `box-corner` has `display none` by default,
  * but when the specializer class `box-corner-XX`
  * is a child of the appropriate `T / F / isnegated / isnotnegated` container,
