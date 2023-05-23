@@ -1,15 +1,12 @@
 /**
  * Represents a truth value
  * 
- * - 'T': True
+ * <br> - 'T': True
+ * <br> - 'F': False
+ * <br> - 'U': unknown (user may have clicked "don't know")
+ * <br> - null : user hasn't clicked on anything
  * 
- * - 'F': False
- * 
- * - 'U': unknown (user may have clicked "don't know")
- * 
- * - null : user hasn't clicked on anything
- * 
- * @typedef {(null | 'U' | | 'T' | 'F')} TruthValue
+ * @typedef {(null | 'U' | 'T' | 'F')} TruthValue
  */
 
 /**
@@ -45,13 +42,13 @@ class AllQuantifier {
     /**
      * Constructs an AllQuantifier
      * @param {Circuit[]} children - Array of Circuit objects
-     * @param {String} [header="all of"] - Optional label of quantifier 
+     * @param {String} [header=("" | "both" | "all of")] - Optional label of quantifier 
      */
     constructor(children, header) {
       this.children = children
       this.header =
-        header !== undefined ? header :
-        this.children.length <= 1 ? null :
+        header ? header :
+        this.children.length <= 1 ? "" :
         this.children.length == 2 ? "both" : "all of"
     }
 }
@@ -66,13 +63,13 @@ class AnyQuantifier {
     /**
      * Constructs an AnyQuantifier
      * @param {Circuit[]} children - Array of Circuit objects
-     * @param {String} [header="either"] - Optional label of quantifier 
+     * @param {String} [header=("" | "either" | "any of")] - Optional label of quantifier 
      */
     constructor(children, header) {
       this.children = children
       this.header =
-        header !== undefined      ? header :
-        this.children.length <= 1 ? null :
+        header ? header :
+        this.children.length <= 1 ? "" :
         this.children.length == 2 ? "either" : "any of"
     }
 }

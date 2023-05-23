@@ -3,6 +3,15 @@
         "includePattern": ".+\\.js(doc|x)?$"
     },
     "opts": {
-        "destination": "./docs/"
+        "destination": "./docs/",
+        "readme": "README.md"
+    },
+    "templates": {
+        "default": {
+            "staticFiles": {
+                "include": ["."],
+                "exclude": ["docs", "css", "js", "test", "jsdoc-config.json", "package-lock.json", "package.json", "README.md"]
+            }
+        }
     }
 }
