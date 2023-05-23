@@ -1,3 +1,6 @@
+@import "ladder-corners.css";
+@import "ladder-sides.css";
+
 :root {
   --main-bg-color: rgb(238, 230, 216);
   --box-bg-color: rgb(254, 254, 253);
@@ -61,58 +64,6 @@
     padding: 0.4em;
     position: relative;
     border: var(--border-width-default) solid var(--main-bg-color);
-}
-
-.ladder-diagram-box-corner {
-    width: 50%;
-    height: 50%;
-    position: absolute;
-    box-sizing: content-box;
-    display: none;
-}
-
-.ladder-diagram-box-corner-0 {
-    top: -.1em; left: -.1em;
-    border-left: var(--border-color-default);
-    border-top: var(--border-color-default);
-    border-color: var(--border-color-positive);
-}
-
-.ladder-diagram-box-corner-1 {
-    bottom: -.1em; left: -.1em;
-    border-left: var(--border-color-default);
-    border-bottom: var(--border-color-default);
-    border-color: var(--border-color-negative);
-}
-
-.ladder-diagram-box-corner-2 {
-    top: -.1em; right: -.1em;
-    border-right: var(--border-color-default);
-    border-top: var(--border-color-default);
-    border-color: var(--border-color-positive);
-}
-
-.ladder-diagram-box-corner-3 {
-    bottom: -.1em; right: -.1em;
-    border-right: var(--border-color-default);
-    border-bottom: var(--border-color-default);
-    border-color: var(--border-color-negative);
-}
-
-.ladder-diagram-box-bool-T > .ladder-diagram-box-corner-0 {
-    display: initial;
-}
-
-.ladder-diagram-box-bool-F > .ladder-diagram-box-corner-1 {
-    display: initial;
-}
-
-.ladder-diagram-box-isnegated > .ladder-diagram-box-corner-3 {
-    display: initial;
-}
-
-.ladder-diagram-box-isnotnegated > .ladder-diagram-box-corner-2 {
-    display: initial;
 }
 
 .ladder-diagram-box-isknown {

@@ -4,7 +4,11 @@
 </head>
 <body>
 
-<div id="test1" style="font-size:1.5em;"></div>
+<h1>Corner Style Test</h1>
+<div id="corners-test" style="font-size:1.5em;"></div>
+
+<h1>Sides Style Test</h1>
+<div id="sides-test" style="font-size:1.5em;"></div>
 
 <script type="module">
 import { BoolVar, AllQuantifier, AnyQuantifier, LadderDiagram } from "../js/ladder.js"
@@ -41,41 +45,68 @@ window.data2 = new AllQuantifier([
     ])
 ])
 
-window.data3 = new AllQuantifier([
+window.data3 =
+  new AllQuantifier([
     new AnyQuantifier([
-        new BoolVar("Left Nothing", false, null),
-        new BoolVar("Left True", false, 'T'),
-        new BoolVar("Left False", false, 'F'),
-        new BoolVar("Not Left Nothing", true, null),
-        new BoolVar("Not Left True", true, 'T'),
-        new BoolVar("Not Left False", true, 'F')
+      new BoolVar(    "Left  Null",    false, null, null  ),
+      new BoolVar(    "Left  Nothing", false, 'U',  null  ),
+      new BoolVar(    "Left  True",    false, 'T',  null  ),
+      new BoolVar(    "Left  False",   false, 'F',  null  ),
+      new BoolVar("Not Left  Null",    true,  null, null  ),
+      new BoolVar("Not Left  Nothing", true,  'U',  null  ),
+      new BoolVar("Not Left  False",   true,  'F',  null  ),
+      new BoolVar("Not Left  True",    true,  'T',  null  ),
     ]),
     new AnyQuantifier([
-        new BoolVar("Right Nothing", false, null, null),
-        new BoolVar("Right True", false, null, 'T'),
-        new BoolVar("Right False", false, null, 'F'),
-        new BoolVar("Not Right Nothing", true, null, null),
-        new BoolVar("Not Right True", true, null, 'T'),
-        new BoolVar("Not Right False", true, null, 'F')
+      new BoolVar(    "Right Null",    false, null, null  ),
+      new BoolVar(    "Right Nothing", false, null, 'U'   ),
+      new BoolVar(    "Right True",    false, null, 'T'   ),
+      new BoolVar(    "Right False",   false, null, 'F'   ),
+      new BoolVar("Not Right Null",    true,  null, null  ),
+      new BoolVar("Not Right Nothing", true,  null, 'U'   ),
+      new BoolVar("Not Right False",   true,  null, 'F'   ),
+      new BoolVar("Not Right True",    true,  null, 'T'   ),
     ])
-])
+  ])
 
 window.diagram1 = new LadderDiagram(
-    document.getElementById("test1"),
+    document.getElementById("corners-test"),
     data1
 )
 
 window.diagram2 = new LadderDiagram(
-    document.getElementById("test1"),
+    document.getElementById("corners-test"),
     data2
 )
 
+// these truth values correspond to `Either (Maybe Bool) (Maybe Bool)`,
+// under an (id | Not) combinator
 window.diagram3 = new LadderDiagram(
-    document.getElementById("test1"),
-    data3
+    document.getElementById("corners-test"),
+    data3,
 )
 
-window.LadderDiagram = LadderDiagram
+window.diagram4 = new LadderDiagram(
+    document.getElementById("sides-test"),
+    data1,
+    "Sides"
+)
+
+window.diagram5 = new LadderDiagram(
+    document.getElementById("sides-test"),
+    data2,
+    "Sides"
+)
+
+// these truth values correspond to `Either (Maybe Bool) (Maybe Bool)`,
+// under an (id | Not) combinator
+window.diagram6 = new LadderDiagram(
+    document.getElementById("sides-test"),
+    data3,
+    "Sides"
+)
+
+
 </script>
 </body>
 </html>

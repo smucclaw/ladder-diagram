@@ -6,9 +6,9 @@ import { BoolVar, AllQuantifier, AnyQuantifier } from "./Data.js"
  * and TruthPath is an array of TruthPaths that corresponds
  * to its children.
  * 
- * E.g., ALL( ANY(A,B), C ). 
+ * <br> E.g., ALL( ANY(A,B), C ). 
  * 
- * Suppose A is false, B is true and C is true. 
+ * <br> Suppose A is false, B is true and C is true. 
  * Then TruthPath is [[false, true], true]
  * @typedef {(Boolean | TruthPath[])} TruthPath
  */
@@ -20,13 +20,15 @@ class LadderDiagram {
      * Constructor
      * @param {HTMLElement} dom_parent - DOM element where the diagram will be made a child of
      * @param {Circuit} circuit - Circuit to generate diagram of
+     * @param {("Corners" | "Sides")} [box_style="Corners"] - Select which box styling to use
      * @param {boolean} [_subgraph=false] - Internal use 
      */
-    constructor(dom_parent, circuit, _subgraph = false) {
+    constructor(dom_parent, circuit, box_style="Corners", _subgraph = false) {
 
         if (circuit.constructor == BoolVar) {
             circuit = new AnyQuantifier(children = [circuit])
         }
+        this.box_style = box_style
         this.graph_type = circuit.constructor
         this.is_subgraph = _subgraph
 
@@ -77,12 +79,31 @@ class LadderDiagram {
     _create_text_cell(x, y, circuit) {
 
         let internal = this._create_empty_cell(x, y)
-        for (let i = 0; i < 4; i++) {
+        let tags, prefix
+        switch (this.box_style) {
+            case "Corners": 
+                tags = ["TL", "BL", "TR", "BR"]
+                prefix = "corner"
+                break
+            case "Sides": 
+                tags = ["Upper-True", "Upper-False", "Lower-False",
+                        "Upper-Not", "Upper-NotTrue", "Lower-Not", 
+                        "Lower-NotFalse", "Lower-NotTrue"]
+                prefix = "half"
+                break
+            default:
+                console.error(
+                    "LadderDiagram._create_text_cell: Invalid this.box_style"
+                    + "Expected: \"Corners\" | \"Sides\". Got "
+                    + `${this.box_style}`)
+        }
+        for (const i of tags) {
             let corner = document.createElement("div")
-            corner.classList.add(`ladder-diagram-box-corner`)
-            corner.classList.add(`ladder-diagram-box-corner-${i}`)
+            corner.classList.add(`ladder-diagram-box-${prefix}`)
+            corner.classList.add(`ladder-diagram-box-${prefix}-${i}`)
             internal.appendChild(corner)
         }
+
         internal.appendChild(document.createTextNode(circuit.text))
         internal.classList.add("ladder-diagram-box")
         internal.classList.add("ladder-diagram-box-text")
@@ -100,10 +121,11 @@ class LadderDiagram {
         switch (truthval) {
             case 'T': internal.classList.add("ladder-diagram-box-bool-T"); break
             case 'F': internal.classList.add("ladder-diagram-box-bool-F"); break
-            case null: break
+            case 'U': 
+            case null: internal.classList.add("ladder-diagram-box-bool-U"); break
             default: console.error(
                 "LadderDiagram._create_text_cell: Invalid bool tag in BoolVar"
-                + "Expected: null | 'T' | 'F'. Got "
+                + "Expected: null | 'U' | 'T' | 'F'. Got "
                 + `${truthval}`)
         }
         return internal
@@ -113,7 +135,7 @@ class LadderDiagram {
         let internal = this._create_empty_cell(x, y)
         internal.classList.add("ladder-diagram-box")
         internal.classList.add("ladder-diagram-box-subgraph")
-        return [internal, new LadderDiagram(internal, subcircuit, true)]
+        return [internal, new LadderDiagram(internal, subcircuit, this.box_style, true)]
     }
 
     _init_grid() {

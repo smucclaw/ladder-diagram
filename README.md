@@ -1,9 +1,20 @@
 # ladder.js
 
-Visualise boolean AND and OR circuits.
+Visualise boolean circuits
+- composed from **combinators** *AND OR NOT*
+- **labeled** with markings *known* (user-provided) and *unknown* (default)
+- **values** being *TRUE FALSE UNKNOWN*
 
-- [Reference](https://juliapoo.github.io/ladder-diagram/index.html)
-- [npm](https://www.npmjs.com/package/ladder-diagram)
+Available as:
+- [Github source](https://juliapoo.github.io/ladder-diagram/index.html)
+- [npm package](https://www.npmjs.com/package/ladder-diagram)
+
+For background, see:
+- [Specification in Google Drive](https://drive.google.com/drive/folders/1y7TssfA925VuyuAt8VBaNxlRTo8KyqlS?usp=sharing)
+- [Haskell version](https://github.com/smucclaw/dsl/tree/main/lib/haskell/anyall)
+- [Purescript version](https://github.com/smucclaw/vue-pure-pdpa/tree/main/src/AnyAll)
+- [Ladder Logic](https://en.wikipedia.org/wiki/Ladder_logic)
+- [Shannon 1940](https://dspace.mit.edu/handle/1721.1/11173)
 
 ## Install
 
@@ -15,10 +26,10 @@ This code generates a diagram that visualises the boolean expression:
 
 $$\texttt{walk} \land (\neg \texttt{swim} \lor \neg \texttt{sink}) \land (\texttt{eat} \lor (\texttt{alcohol} \lor \texttt{non-alcohol}))$$
 
-| | `walk` | `swim` | `sink` | `eat` | `alcohol` | `non-alcohol` |
-| - | - | - | - | - | - | - |
-| Default Value | - | F | - | - | - | F |
-| Known Value | T | F | - | F | T | - | 
+|               | `walk` | `swim` | `sink` | `eat` | `alcohol` | `non-alcohol` |
+|---------------|--------|--------|--------|-------|-----------|---------------|
+| Default Value | -      | F      | -      | -     | -         | F             |
+| Known Value   | T      | F      | -      | F     | T         | -             |
 
 ```html
 <html>
@@ -59,7 +70,8 @@ let circuit = new AllQuantifier([
 
 window.diagram = new LadderDiagram(
     document.getElementById("test"),
-    circuit
+    circuit,
+    "Corners" // Box styling
 )
 </script>
 </body>
@@ -68,7 +80,21 @@ window.diagram = new LadderDiagram(
 
 Given the known values of each boolean variable, the resulting expression evaluates to `True`, and the diagram highlights a "path" that explains the truth value of the expression.
 
-<img src="./rsrc/example.jpg" width="500">
+<img src="./rsrc/example-corners.jpg" width="500" style="max-width:100%">
+
+## Corners vs Sides Styling
+
+To enable an alternative box styling, change the `box_style` argument to `"Sides"`:
+```js
+new LadderDiagram(
+    document.getElementById("test"),
+    circuit,
+    "Sides" // Box styling
+)
+``` 
+This alternative design marks the sides instead of the corners, according to the original spec.
+
+<img src="./rsrc/example-sides.png" width="1000" style="max-width:100%">
 
 ## Developing
 
