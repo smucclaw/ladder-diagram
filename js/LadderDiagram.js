@@ -18,12 +18,12 @@ class LadderDiagram {
 
     /**
      * Constructor
-     * @param {HTMLElement} dom_parent - DOM element where the diagram will be made a child of
+     * @param {Number} em_size - em-size of parent element, for scale
      * @param {Circuit} circuit - Circuit to generate diagram of
      * @param {("Corners" | "Sides")} [box_style="Corners"] - Select which box styling to use
      * @param {boolean} [_subgraph=false] - Internal use 
      */
-    constructor(dom_parent, circuit, box_style="Corners", _subgraph = false) {
+    constructor(em_size, circuit, box_style="Corners", _subgraph = false) {
 
         if (circuit.constructor.name == 'BoolVar') {
             circuit = new AnyQuantifier(children = [circuit])
@@ -32,11 +32,8 @@ class LadderDiagram {
         this.graph_type = circuit.constructor
         this.is_subgraph = _subgraph
 
-        this.dom_parent = dom_parent
-
         this.dom_diagram = document.createElement("div")
         this.dom_diagram.classList.add(_subgraph ? "ladder-diagram-subgraph" : "ladder-diagram")
-        this.dom_parent.appendChild(this.dom_diagram)
 
         if (circuit.header) {
             this.dom_header = document.createElement("div")
@@ -55,7 +52,7 @@ class LadderDiagram {
 
         this.circuit = circuit
         this._init_grid()
-        this.em_size = parseFloat(getComputedStyle(this.dom_parent).fontSize)
+        this.em_size = em_size
 
         this.ctx = this._init_drawing_ctx()
         this._init_lines()
@@ -135,7 +132,9 @@ class LadderDiagram {
         let internal = this._create_empty_cell(x, y)
         internal.classList.add("ladder-diagram-box")
         internal.classList.add("ladder-diagram-box-subgraph")
-        return [internal, new LadderDiagram(internal, subcircuit, this.box_style, true)]
+        let subgraph = new LadderDiagram(this.em_size, subcircuit, this.box_style, true)
+        internal.appendChild(subgraph.dom_diagram)
+        return [internal, subgraph]
     }
 
     _init_grid() {
@@ -385,13 +384,6 @@ class LadderDiagram {
         return Boolean(this.get_truth_path())
     }
 
-    /**
-     * Removes itself from its parent node.
-     * @returns {void}
-     */
-    detach() {
-        this.dom_parent.removeChild(this.dom_diagram)
-    }
 }
 
 export { LadderDiagram }
