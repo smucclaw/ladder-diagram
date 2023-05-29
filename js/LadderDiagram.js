@@ -139,8 +139,8 @@ class LadderDiagram {
     }
 
     _init_grid() {
-        switch (this.graph_type) {
-            case AllQuantifier:
+        switch (this.graph_type.name) {
+            case "AllQuantifier":
                 this.dom_nodes = []
                 this.start_point = this._create_hidden_cell(0, 0)
                 let nchild = this.circuit.children.length
@@ -157,7 +157,7 @@ class LadderDiagram {
                 })
                 this.end_point = this._create_hidden_cell(2 * nchild, 0)
                 break
-            case AnyQuantifier:
+            case "AnyQuantifier":
                 this.dom_nodes = []
                 this.start_point = this._create_hidden_cell(0, 0)
                 this.circuit.children.forEach((item, idx) => {
@@ -263,11 +263,11 @@ class LadderDiagram {
 
     _init_lines(color = "rgb(120,120,120)", linewidth = 0.05*this.em_size) {
 
-        switch (this.graph_type) {
-            case AllQuantifier:
+        switch (this.graph_type.name) {
+            case "AllQuantifier":
                 this._draw_lines_allquantifier(color, linewidth)
                 break
-            case AnyQuantifier:
+            case "AnyQuantifier":
                 this._draw_lines_anyquantifier(color, linewidth)
                 break
             default:
@@ -283,15 +283,15 @@ class LadderDiagram {
 
     _draw_truth_path(truthpath, color = "black", linewidth = 0.15*this.em_size) {
         if (!truthpath) return
-        switch (this.graph_type) {
-            case AllQuantifier:
+        switch (this.graph_type.name) {
+            case "AllQuantifier":
                 this._draw_lines_allquantifier(color, linewidth)
                 truthpath.forEach((p, idx) => {
                     let [_1, diagram_object, _2] = this.dom_nodes[idx]
                     if (diagram_object) diagram_object._draw_truth_path(p)
                 })
                 break
-            case AnyQuantifier:
+            case "AnyQuantifier":
                 let start_pos = this._dom_get_center(this.start_point)
                 let end_pos = this._dom_get_center(this.end_point)
                 truthpath.forEach((p, idx) => {
@@ -352,8 +352,8 @@ class LadderDiagram {
      */
     get_truth_path() {
         let ret = []
-        switch (this.graph_type) {
-            case AllQuantifier:
+        switch (this.graph_type.name) {
+            case "AllQuantifier":
                 this.dom_nodes.forEach((c, cidx) => {
                     if (!ret) return
                     let nodepath = c[1] ? c[1].get_truth_path() : this._node_is_true(cidx)
@@ -361,7 +361,7 @@ class LadderDiagram {
                 })
                 ret = ret.some(x => !x) ? null : ret
                 break
-            case AnyQuantifier:
+            case "AnyQuantifier":
                 this.dom_nodes.some((c, cidx) => {
                     let nodepath = c[1] ? c[1].get_truth_path() : this._node_is_true(cidx)
                     ret.push(nodepath)
