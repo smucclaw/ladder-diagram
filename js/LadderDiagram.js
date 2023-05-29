@@ -25,7 +25,7 @@ class LadderDiagram {
      */
     constructor(dom_parent, circuit, box_style="Corners", _subgraph = false) {
 
-        if (circuit.constructor == BoolVar) {
+        if (circuit.constructor.name == 'BoolVar') {
             circuit = new AnyQuantifier(children = [circuit])
         }
         this.box_style = box_style
@@ -146,7 +146,7 @@ class LadderDiagram {
                 let nchild = this.circuit.children.length
                 this.circuit.children.forEach((item, idx) => {
                     let dom_node, diagram_object
-                    if (item.constructor == BoolVar) {
+                    if (item.constructor.name == 'BoolVar') {
                         [dom_node, diagram_object] = [this._create_text_cell(1 + 2 * idx, 0, item), null]
                     }
                     else {
@@ -162,7 +162,7 @@ class LadderDiagram {
                 this.start_point = this._create_hidden_cell(0, 0)
                 this.circuit.children.forEach((item, idx) => {
                     let dom_node, diagram_object
-                    if (item.constructor == BoolVar) {
+                    if (item.constructor.name == 'BoolVar') {
                         [dom_node, diagram_object] = [this._create_text_cell(1, idx, item), null]
                     }
                     else {
