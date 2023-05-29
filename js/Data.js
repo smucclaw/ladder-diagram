@@ -25,6 +25,7 @@ class BoolVar {
      * @param {TruthValue} [known=null] - Known value of the variable
      */
     constructor(text, isnegated, preset = null, known = null) {
+        this.type = "BoolVar"
         this.text = text
         this.isnegated = isnegated
         this.preset = preset
@@ -45,8 +46,9 @@ class AllQuantifier {
      * @param {String} [header=("" | "both" | "all of")] - Optional label of quantifier 
      */
     constructor(children, header) {
-      this.children = children
-      this.header =
+        this.type = "AllQuantifier"
+        this.children = children
+        this.header =
         header ? header :
         this.children.length <= 1 ? "" :
         this.children.length == 2 ? "both" : "all of"
@@ -66,8 +68,9 @@ class AnyQuantifier {
      * @param {String} [header=("" | "either" | "any of")] - Optional label of quantifier 
      */
     constructor(children, header) {
-      this.children = children
-      this.header =
+        this.type = "AnyQuantifier"
+        this.children = children
+        this.header =
         header ? header :
         this.children.length <= 1 ? "" :
         this.children.length == 2 ? "either" : "any of"

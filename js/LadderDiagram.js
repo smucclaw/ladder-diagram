@@ -25,11 +25,11 @@ class LadderDiagram {
      */
     constructor(em_size, circuit, box_style="Corners", _subgraph = false) {
 
-        if (circuit.constructor.name == 'BoolVar') {
+        if (circuit.type == 'BoolVar') {
             circuit = new AnyQuantifier(children = [circuit])
         }
         this.box_style = box_style
-        this.graph_type = circuit.constructor
+        this.graph_type = circuit.type
         this.is_subgraph = _subgraph
 
         this.dom_diagram = document.createElement("div")
@@ -138,14 +138,14 @@ class LadderDiagram {
     }
 
     _init_grid() {
-        switch (this.graph_type.name) {
+        switch (this.graph_type) {
             case "AllQuantifier":
                 this.dom_nodes = []
                 this.start_point = this._create_hidden_cell(0, 0)
                 let nchild = this.circuit.children.length
                 this.circuit.children.forEach((item, idx) => {
                     let dom_node, diagram_object
-                    if (item.constructor.name == 'BoolVar') {
+                    if (item.type == 'BoolVar') {
                         [dom_node, diagram_object] = [this._create_text_cell(1 + 2 * idx, 0, item), null]
                     }
                     else {
@@ -161,7 +161,7 @@ class LadderDiagram {
                 this.start_point = this._create_hidden_cell(0, 0)
                 this.circuit.children.forEach((item, idx) => {
                     let dom_node, diagram_object
-                    if (item.constructor.name == 'BoolVar') {
+                    if (item.type == 'BoolVar') {
                         [dom_node, diagram_object] = [this._create_text_cell(1, idx, item), null]
                     }
                     else {
@@ -262,7 +262,7 @@ class LadderDiagram {
 
     _init_lines(color = "rgb(120,120,120)", linewidth = 0.05*this.em_size) {
 
-        switch (this.graph_type.name) {
+        switch (this.graph_type) {
             case "AllQuantifier":
                 this._draw_lines_allquantifier(color, linewidth)
                 break
@@ -282,7 +282,7 @@ class LadderDiagram {
 
     _draw_truth_path(truthpath, color = "black", linewidth = 0.15*this.em_size) {
         if (!truthpath) return
-        switch (this.graph_type.name) {
+        switch (this.graph_type) {
             case "AllQuantifier":
                 this._draw_lines_allquantifier(color, linewidth)
                 truthpath.forEach((p, idx) => {
@@ -351,7 +351,7 @@ class LadderDiagram {
      */
     get_truth_path() {
         let ret = []
-        switch (this.graph_type.name) {
+        switch (this.graph_type) {
             case "AllQuantifier":
                 this.dom_nodes.forEach((c, cidx) => {
                     if (!ret) return
