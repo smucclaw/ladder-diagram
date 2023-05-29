@@ -48,10 +48,10 @@
     display: initial;
 }
 
-.ladder-diagram-box-isnegated > .ladder-diagram-box-corner-TR {
+.ladder-diagram-box-isnegated > .ladder-diagram-box-corner-BR {
     display: initial;
 }
 
-.ladder-diagram-box-isnotnegated > .ladder-diagram-box-corner-BR {
+.ladder-diagram-box-isnotnegated > .ladder-diagram-box-corner-TR {
     display: initial;
 }
