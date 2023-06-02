@@ -70,7 +70,7 @@ window.data3 =
   ])
 
 function myAttach(boxStyle, parentId, dataSource) {
-  let ld = new LadderDiagram( parseFloat(getComputedStyle(document.getElementById(parentId)).fontSize),
+  let ld = new LadderDiagram( document.getElementById(parentId),
                               dataSource,
                               boxStyle )
   document.getElementById(parentId).appendChild(ld.dom_diagram)

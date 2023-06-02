@@ -18,12 +18,12 @@ class LadderDiagram {
 
     /**
      * Constructor
-     * @param {Number} em_size - em-size of parent element, for scale
+     * @param {HTMLElement} dom_parent -- parent element for dispatching events and getting em_size, but not mutated!
      * @param {Circuit} circuit - Circuit to generate diagram of
      * @param {("Corners" | "Sides")} [box_style="Corners"] - Select which box styling to use
      * @param {boolean} [_subgraph=false] - Internal use 
      */
-    constructor(em_size, circuit, box_style="Corners", _subgraph = false) {
+    constructor(dom_parent, circuit, box_style="Corners", _subgraph = false) {
 
         if (circuit.type == 'BoolVar') {
             circuit = new AnyQuantifier(children = [circuit])
@@ -53,7 +53,8 @@ class LadderDiagram {
 
         this.circuit = circuit
         this._init_grid()
-        this.em_size = em_size
+      this.em_size = parseFloat(getComputedStyle(dom_parent.fontSize))
+      this.dom_parent = dom_parent
 
         this.ctx = this._init_drawing_ctx()
         this._init_lines()
@@ -129,7 +130,7 @@ class LadderDiagram {
 
       internal.addEventListener("click", function(e) {
         console.log(`textNode eventListener click on ${JSON.stringify(circuit, null, 2)} handling event ${JSON.stringify(e,null,2)}; and firing ladderEvent event`)
-        this.dispatchEvent(
+        this.dom_parent.dispatchEvent(
           new CustomEvent("ladderEvent", {
             bubbles: false,
             cancelable: true,
@@ -145,7 +146,7 @@ class LadderDiagram {
         let internal = this._create_empty_cell(x, y)
         internal.classList.add("ladder-diagram-box")
         internal.classList.add("ladder-diagram-box-subgraph")
-        let subgraph = new LadderDiagram(this.em_size, subcircuit, this.box_style, true)
+        let subgraph = new LadderDiagram(this.dom_parent, subcircuit, this.box_style, true)
         internal.appendChild(subgraph.dom_diagram)
         return [internal, subgraph]
     }
