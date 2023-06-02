@@ -128,18 +128,21 @@ class LadderDiagram {
                 + `${truthval}`)
         }
 
-      let that = this
-      internal.addEventListener("click", function(e) {
-        // console.log(`textNode eventListener click on ${JSON.stringify(circuit, null, 2)} handling event ${JSON.stringify(e,null,2)}; and firing ladderEvent event against ${that.dom_parent}`)
-        that.dom_parent.dispatchEvent(
-          new CustomEvent("ladderEvent", {
-            bubbles: false,
-            cancelable: true,
-            detail: circuit.text // [TODO] replace this with circuit.id when we have that available.
-          })
-        );
-      });
-
+        // when the user clicks the diagram, we want to cycle the values;
+        // we inform the parent Vue component that a certain element has been clicked.
+        // the LadderDiagram.vue component does the rest using a ladderEventHandler.
+        let that = this
+        internal.addEventListener("click", function(e) {
+            // console.log(`textNode eventListener click on ${JSON.stringify(circuit, null, 2)} handling event ${JSON.stringify(e,null,2)}; and firing ladderEvent event against ${that.dom_parent}`)
+            that.dom_parent.dispatchEvent(
+                new CustomEvent("ladderEvent", {
+                    bubbles: false,
+                    cancelable: true,
+                    detail: circuit.text // [TODO] replace this with circuit.id when we have that available.
+                })
+            );
+        });
+        
         return internal
     }
 
