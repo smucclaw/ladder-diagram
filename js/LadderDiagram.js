@@ -53,7 +53,7 @@ class LadderDiagram {
 
         this.circuit = circuit
         this._init_grid()
-      this.em_size = parseFloat(getComputedStyle(dom_parent.fontSize))
+      this.em_size = parseFloat(getComputedStyle(dom_parent).fontSize)
       this.dom_parent = dom_parent
 
         this.ctx = this._init_drawing_ctx()
