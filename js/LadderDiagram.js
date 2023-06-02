@@ -28,6 +28,7 @@ class LadderDiagram {
         if (circuit.type == 'BoolVar') {
             circuit = new AnyQuantifier(children = [circuit])
         }
+
         this.box_style = box_style
         this.graph_type = circuit.type
         this.is_subgraph = _subgraph
@@ -45,18 +46,6 @@ class LadderDiagram {
         this.dom_diagram_elements = document.createElement("div")
         this.dom_diagram_elements.classList.add("ladder-diagram-elements")
         this.dom_diagram.appendChild(this.dom_diagram_elements)
-
-      this.dom_diagram_elements.addEventListener("click", function() {
-        console.log(`dom_diagram_elements eventListener click handling click; and firing ladderEvent event`)
-        this.dispatchEvent(
-          new CustomEvent("ladderEvent", {
-            bubbles: true,
-            detail: circuit.text // [TODO] replace this with circuit.id when we have that available.
-          })
-        );
-
-      });
-
 
         this.dom_diagram_lines = document.createElement("canvas")
         this.dom_diagram_lines.classList.add("ladder-diagram-lines")
@@ -137,6 +126,18 @@ class LadderDiagram {
                 + "Expected: null | 'U' | 'T' | 'F'. Got "
                 + `${truthval}`)
         }
+
+      internal.addEventListener("click", function(e) {
+        console.log(`textNode eventListener click on ${JSON.stringify(circuit, null, 2)} handling event ${JSON.stringify(e,null,2)}; and firing ladderEvent event`)
+        this.dispatchEvent(
+          new CustomEvent("ladderEvent", {
+            bubbles: false,
+            cancelable: true,
+            detail: circuit.text // [TODO] replace this with circuit.id when we have that available.
+          })
+        );
+      });
+
         return internal
     }
 
