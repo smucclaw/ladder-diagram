@@ -130,7 +130,7 @@ class LadderDiagram {
 
       let that = this
       internal.addEventListener("click", function(e) {
-        console.log(`textNode eventListener click on ${JSON.stringify(circuit, null, 2)} handling event ${JSON.stringify(e,null,2)}; and firing ladderEvent event against ${that.dom_parent}`)
+        // console.log(`textNode eventListener click on ${JSON.stringify(circuit, null, 2)} handling event ${JSON.stringify(e,null,2)}; and firing ladderEvent event against ${that.dom_parent}`)
         that.dom_parent.dispatchEvent(
           new CustomEvent("ladderEvent", {
             bubbles: false,
