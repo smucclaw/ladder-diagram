@@ -18,49 +18,20 @@ class LadderDiagram {
 
     /**
      * Constructor
-     * @param {HTMLElement} dom_parent - DOM element where the diagram will be made a child of
      * @param {Circuit} circuit - Circuit to generate diagram of
      * @param {("Corners" | "Sides")} [box_style="Corners"] - Select which box styling to use
      * @param {boolean} [_subgraph=false] - Internal use 
      */
-    constructor(dom_parent, circuit, box_style="Corners", _subgraph = false) {
+    constructor(circuit, box_style="Corners", _subgraph = false) {
 
         if (circuit.type == 'BoolVar') {
             circuit = new AnyQuantifier(children = [circuit])
         }
+        this.circuit = circuit
         this.box_style = box_style
         this.graph_type = circuit.type
         this.is_subgraph = _subgraph
-
-        this.dom_parent = dom_parent
-
-        this.dom_diagram = document.createElement("div")
-        this.dom_diagram.classList.add(_subgraph ? "ladder-diagram-subgraph" : "ladder-diagram")
-        this.dom_parent.appendChild(this.dom_diagram)
-
-        if (circuit.header) {
-            this.dom_header = document.createElement("div")
-            this.dom_header.classList.add("ladder-diagram-header")
-            this.dom_header.appendChild(document.createTextNode(circuit.header))
-            this.dom_diagram.appendChild(this.dom_header)
-        }
-
-        this.dom_diagram_elements = document.createElement("div")
-        this.dom_diagram_elements.classList.add("ladder-diagram-elements")
-        this.dom_diagram.appendChild(this.dom_diagram_elements)
-
-        this.dom_diagram_lines = document.createElement("canvas")
-        this.dom_diagram_lines.classList.add("ladder-diagram-lines")
-        this.dom_diagram.appendChild(this.dom_diagram_lines)
-
-        this.circuit = circuit
-        this._init_grid()
-        this.em_size = parseFloat(getComputedStyle(this.dom_parent).fontSize)
-
-        this.ctx = this._init_drawing_ctx()
-        this._init_lines()
-
-        this._init_events()
+        this.is_attached = false
     }
 
     _create_empty_cell(x, y) {
@@ -135,7 +106,9 @@ class LadderDiagram {
         let internal = this._create_empty_cell(x, y)
         internal.classList.add("ladder-diagram-box")
         internal.classList.add("ladder-diagram-box-subgraph")
-        return [internal, new LadderDiagram(internal, subcircuit, this.box_style, true)]
+        let ld = new LadderDiagram(subcircuit, this.box_style, true)
+        ld.attach(internal)
+        return [internal, ld]
     }
 
     _init_grid() {
@@ -343,6 +316,7 @@ class LadderDiagram {
             .addEventListener("scroll", (event) => this.redraw_lines())
         document
             .addEventListener('DOMContentLoaded', (event) => this.redraw_lines())
+        new ResizeObserver(() => this.redraw_lines()).observe(this.dom_diagram)
     }
 
     /**
@@ -390,7 +364,59 @@ class LadderDiagram {
      * @returns {void}
      */
     detach() {
+        if (!this.attached) {
+            console.error(
+                `LadderDiagram.detach: Diagram not attached anything`
+            )
+            return
+        }
+        this.attached = false
         this.dom_parent.removeChild(this.dom_diagram)
+    }
+
+    /**
+     * Attaches itself into a parent node
+     * @param {HTMLElement} dom_parent - DOM element where the diagram will be made a child of
+     * @returns {void}
+     */
+    attach(dom_parent) {
+
+        if (this.attached) {
+            console.error(
+                `LadderDiagram.attach: Diagram already attached`
+            )
+            return
+        }
+        this.attached = true
+
+        this.dom_parent = dom_parent
+
+        this.dom_diagram = document.createElement("div")
+        this.dom_diagram.classList.add(this.is_subgraph ? "ladder-diagram-subgraph" : "ladder-diagram")
+        this.dom_parent.appendChild(this.dom_diagram)
+
+        if (this.circuit.header) {
+            this.dom_header = document.createElement("div")
+            this.dom_header.classList.add("ladder-diagram-header")
+            this.dom_header.appendChild(document.createTextNode(this.circuit.header))
+            this.dom_diagram.appendChild(this.dom_header)
+        }
+
+        this.dom_diagram_elements = document.createElement("div")
+        this.dom_diagram_elements.classList.add("ladder-diagram-elements")
+        this.dom_diagram.appendChild(this.dom_diagram_elements)
+
+        this.dom_diagram_lines = document.createElement("canvas")
+        this.dom_diagram_lines.classList.add("ladder-diagram-lines")
+        this.dom_diagram.appendChild(this.dom_diagram_lines)
+
+        this._init_grid()
+        this.em_size = parseFloat(getComputedStyle(this.dom_parent).fontSize)
+
+        this.ctx = this._init_drawing_ctx()
+        this._init_lines()
+
+        this._init_events()
     }
 }
 

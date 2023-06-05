@@ -24,6 +24,8 @@
 .ladder-diagram-subgraph {
     background-color: var(--main-bg-color);
     position: relative;
+    overflow: hidden;
+    font-size: inherit;
 }
 
 .ladder-diagram-elements {
