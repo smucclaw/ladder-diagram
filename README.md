@@ -24,7 +24,7 @@ For background, see:
 
 This code generates a diagram that visualises the boolean expression:
 
-$$\texttt{walk} \land (\neg \texttt{swim} \lor \neg \texttt{sink}) \land (\texttt{eat} \lor (\texttt{alcohol} \lor \texttt{non-alcohol}))$$
+![equation](./rsrc/equation.svg)
 
 |               | `walk` | `swim` | `sink` | `eat` | `alcohol` | `non-alcohol` |
 |---------------|--------|--------|--------|-------|-----------|---------------|
