@@ -6,8 +6,12 @@ Visualise boolean circuits
 - **values** being *TRUE FALSE UNKNOWN*
 
 Available as:
-- [Github source](https://juliapoo.github.io/ladder-diagram/index.html)
+- [Github source](https://smucclaw.github.io/ladder-diagram/index.html)
 - [npm package](https://www.npmjs.com/package/ladder-diagram)
+
+Documentation:
+- [Explanation of notation](https://smucclaw.github.io/ladder-diagram/simpleTutorial.html)
+- [Reference](https://smucclaw.github.io/ladder-diagram/)
 
 For background, see:
 - [Specification in Google Drive](https://drive.google.com/drive/folders/1y7TssfA925VuyuAt8VBaNxlRTo8KyqlS?usp=sharing)
@@ -24,7 +28,7 @@ For background, see:
 
 This code generates a diagram that visualises the boolean expression:
 
-$$\texttt{walk} \land (\neg \texttt{swim} \lor \neg \texttt{sink}) \land (\texttt{eat} \lor (\texttt{alcohol} \lor \texttt{non-alcohol}))$$
+![equation](./rsrc/equation.svg)
 
 |               | `walk` | `swim` | `sink` | `eat` | `alcohol` | `non-alcohol` |
 |---------------|--------|--------|--------|-------|-----------|---------------|
