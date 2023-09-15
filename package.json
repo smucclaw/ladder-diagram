@@ -1,6 +1,6 @@
 {
   "name": "ladder-diagram",
-  "version": "1.1.7",
+  "version": "2.0.3",
   "description": "Visualise AND and OR boolean circuits",
   "main": "js/ladder.js",
   "devDependencies": {
@@ -14,7 +14,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/JuliaPoo/ladder-diagram.git"
+    "url": "git+https://github.com/smucclaw/ladder-diagram.git"
   },
   "keywords": [
     "ladder",
@@ -23,10 +23,10 @@
     "boolean",
     "circuits"
   ],
-  "author": "JuliaPoo",
+  "author": "smucclaw",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/JuliaPoo/ladder-diagram/issues"
+    "url": "https://github.com/smucclaw/ladder-diagram/issues"
   },
-  "homepage": "https://juliapoo.github.io/ladder-diagram/"
+  "homepage": "https://smucclaw.github.io/ladder-diagram/"
 }

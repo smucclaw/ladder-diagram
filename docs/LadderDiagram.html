@@ -28,7 +28,7 @@
 
 <header>
     
-        <h2><span class="attribs"><span class="type-signature"></span></span>LadderDiagram<span class="signature">(dom_parent, circuit, box_style<span class="signature-attributes">opt</span>, _subgraph<span class="signature-attributes">opt</span>)</span><span class="type-signature"></span></h2>
+        <h2><span class="attribs"><span class="type-signature"></span></span>LadderDiagram<span class="signature">(circuit, box_style<span class="signature-attributes">opt</span>, _subgraph<span class="signature-attributes">opt</span>)</span><span class="type-signature"></span></h2>
         
             <div class="class-description">Represents the LadderDiagram generated from a boolean circuit</div>
         
@@ -45,7 +45,7 @@
     
 
     
-    <h4 class="name" id="LadderDiagram"><span class="type-signature"></span>new LadderDiagram<span class="signature">(dom_parent, circuit, box_style<span class="signature-attributes">opt</span>, _subgraph<span class="signature-attributes">opt</span>)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="LadderDiagram"><span class="type-signature"></span>new LadderDiagram<span class="signature">(circuit, box_style<span class="signature-attributes">opt</span>, _subgraph<span class="signature-attributes">opt</span>)</span><span class="type-signature"></span></h4>
     
 
     
@@ -89,41 +89,6 @@
     </thead>
 
     <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>dom_parent</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">HTMLElement</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                </td>
-            
-
-            <td class="description last">DOM element where the diagram will be made a child of</td>
-        </tr>
-
     
 
         <tr>
@@ -334,6 +299,165 @@
     
 
     
+    <h4 class="name" id="attach"><span class="type-signature"></span>attach<span class="signature">(dom_parent)</span><span class="type-signature"> &rarr; {<a href="LadderDiagram.html">LadderDiagram</a>}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Attaches itself into a parent node
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>dom_parent</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">HTMLElement</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">DOM element where the diagram will be made a child of</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="LadderDiagram.js.html">LadderDiagram.js</a>, <a href="LadderDiagram.js.html#line382">line 382</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    - Updated ladder diagram
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="LadderDiagram.html">LadderDiagram</a></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
     <h4 class="name" id="detach"><span class="type-signature"></span>detach<span class="signature">()</span><span class="type-signature"> &rarr; {void}</span></h4>
     
 
@@ -386,7 +510,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="LadderDiagram.js.html">LadderDiagram.js</a>, <a href="LadderDiagram.js.html#line392">line 392</a>
+        <a href="LadderDiagram.js.html">LadderDiagram.js</a>, <a href="LadderDiagram.js.html#line366">line 366</a>
     </li></ul></dd>
     
 
@@ -492,7 +616,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="LadderDiagram.js.html">LadderDiagram.js</a>, <a href="LadderDiagram.js.html#line353">line 353</a>
+        <a href="LadderDiagram.js.html">LadderDiagram.js</a>, <a href="LadderDiagram.js.html#line327">line 327</a>
     </li></ul></dd>
     
 
@@ -605,7 +729,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="LadderDiagram.js.html">LadderDiagram.js</a>, <a href="LadderDiagram.js.html#line384">line 384</a>
+        <a href="LadderDiagram.js.html">LadderDiagram.js</a>, <a href="LadderDiagram.js.html#line358">line 358</a>
     </li></ul></dd>
     
 
@@ -679,7 +803,7 @@
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Tue May 23 2023 12:07:40 GMT+0800 (GMT+08:00)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Thu Jun 08 2023 17:59:34 GMT+0800 (GMT+08:00)
 </footer>
 
 <script> prettyPrint(); </script>

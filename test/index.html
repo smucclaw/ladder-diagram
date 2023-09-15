@@ -5,10 +5,17 @@
 <body>
 
 <h1>Corner Style Test</h1>
-<div id="corners-test" style="font-size:1.5em;"></div>
+<div id="corners-test" style="font-size:1em;"></div>
 
 <h1>Sides Style Test</h1>
-<div id="sides-test" style="font-size:1.5em;"></div>
+<div id="sides-test" style="font-size:1em;"></div>
+
+<h1>Attach-Detach Test</h1>
+<div id="container1" style="max-width:500px;"></div>
+<div id="container2" style="max-width:740px;"></div>
+
+<h1>Layout Test</h1>
+<div id="layout-test" style="font-size:1em;"></div> 
 
 <script type="module">
 import { BoolVar, AllQuantifier, AnyQuantifier, LadderDiagram } from "../js/ladder.js"
@@ -85,7 +92,59 @@ window.diagram4 = myAttach("Sides", "sides-test", data1)
 window.diagram5 = myAttach("Sides", "sides-test", data2)
 window.diagram6 = myAttach("Sides", "sides-test", data3)
 
+const bigtext = "a ".repeat(100);
+window.data4 = 
+    new AllQuantifier([
+        new BoolVar(bigtext, false, null, null),
+        new AnyQuantifier([
+            new AllQuantifier([
+                new AnyQuantifier([
+                    new BoolVar(bigtext, false, null, null),
+                    new BoolVar(bigtext, false, null, null),
+                ]),
+                new AnyQuantifier([
+                    new BoolVar(bigtext, false, null, null),
+                    new BoolVar(bigtext, false, null, null),
+                ]),
+            ]),
+        new BoolVar(bigtext, false, null, null)
+    ])
+    ])
 
+window.diagram1 = new LadderDiagram(data1)
+window.diagram1.attach(document.getElementById("corners-test"))
+
+window.diagram2 = new LadderDiagram(data2)
+window.diagram2.attach(document.getElementById("corners-test"))
+
+// these truth values correspond to `Either (Maybe Bool) (Maybe Bool)`,
+// under an (id | Not) combinator
+window.diagram3 = new LadderDiagram(data3)
+window.diagram3.attach(document.getElementById("corners-test"))
+
+window.diagram4 = new LadderDiagram(data1, "Sides")
+window.diagram4.attach(document.getElementById("sides-test"))
+
+window.diagram5 = new LadderDiagram(data2, "Sides")
+window.diagram5.attach(document.getElementById("sides-test"))
+
+// these truth values correspond to `Either (Maybe Bool) (Maybe Bool)`,
+// under an (id | Not) combinator
+window.diagram6 = new LadderDiagram(data3, "Sides")
+window.diagram6.attach(document.getElementById("sides-test"))
+
+window.diagram7 = new LadderDiagram(data1)
+diagram7.attach(document.getElementById("container1"))
+diagram7.detach()
+diagram7.attach(document.getElementById("container2"))
+
+window.diagram8 = new LadderDiagram(data2)
+diagram8.attach(document.getElementById("container2"))
+diagram8.detach()
+diagram8.attach(document.getElementById("container1"))
+
+window.diagram9 = new LadderDiagram(data4);
+diagram9.attach(document.getElementById("layout-test"))
 
 </script>
 </body>
